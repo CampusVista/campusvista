@@ -6,25 +6,33 @@ from django.urls import reverse
 
 # Create your models here.
 
-class acct_attribute(models.Model):
+class acct_classification(models.Model):
     classification = (
         ('Student', 'Student'),
         ('Teacher', 'Teacher'),
         ('Staff', 'Staff'),
         ('Parent', 'Parent'),
     )
-    gender = (
-        ('Female', 'Female'),
-        ('Male', 'Male')
-    )
     rootid = models.ForeignKey(User, on_delete=models.CASCADE)
     classification = models.CharField(max_length=20, choices=classification)
-    gender = models.CharField(max_length=10, choices=gender)
-    phone = models.IntegerField()
-    address = models.CharField(max_length=50)
     user = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
     def __unicode__(self):
-        return 'acct_attribute {}'.format(self.id) 
+        return 'acct_classification {}'.format(self.id) 
+
+class acct_attribute(models.Model):
+    gender = (
+        ('Female', 'Female'),
+        ('Male', 'Male')
+    )
+    rootid = models.ForeignKey(acct_classification, on_delete=models.CASCADE)
+    gender = models.CharField(max_length=20, choices=gender)
+    phone = models.IntegerField()
+    user = models.IntegerField()
+    timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add = False, auto_now=True)
+
+    def __unicode__(self):
+        return 'acct_attribute {}'.format(self.id)
