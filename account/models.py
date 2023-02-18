@@ -27,4 +27,4 @@ class acct_attribute(models.Model):
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
     def __unicode__(self):
-        return 'acct_clasification {}'.format(self.id) 
+        return 'acct_attribute {}'.format(self.id) 
