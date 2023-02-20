@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse 
 
 
+def upload_location(instance, filename):
+    return "%s/%s" %(instance.id, filename)
 
 class acct_attribute(models.Model):
     classification = (

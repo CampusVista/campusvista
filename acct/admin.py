@@ -1,5 +1,5 @@
 from django.contrib import admin
-from account.models import (acct_attribute, student, staff, enrollment, className,
+from acct.models import (acct_attribute, student, staff, enrollment, className,
                              subjectName, transcript, fees)
 
 class ClassificationModelAdmin(admin.ModelAdmin):
