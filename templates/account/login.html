@@ -1,0 +1,46 @@
+{% extends "libs/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+
+{% get_providers as socialaccount_providers %}
+
+
+<div class="d-flex flex-column w-100 justify-content-center align-items-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="card card-default rounded-0 shadow">
+            <div class="card-header">
+                <h4 class="card-title"><b>Login</b></h4>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <form class="login" method="POST" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control rounded-0" name="login" id="id_username" placeholder="Username" required="required">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" class="form-control rounded-0" name="password" id="id_password" placeholder="Password" required="required">
+                        </div>
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <div class="form-group mb-3">
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <button class="btn btn-sm rounded-0 btn-primary">
+                                    {% trans "Sign In" %}
+                                    </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
