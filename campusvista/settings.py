@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'acct',
+    
+    'tailwind',
+    'tailwind_theme',
+    'django_browser_reload'
 ]
 
 SITE_ID = 1
@@ -55,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'campusvista.urls'
@@ -135,3 +141,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# tailwind definition
+TAILWIND_APP_NAME = 'tailwind_theme'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

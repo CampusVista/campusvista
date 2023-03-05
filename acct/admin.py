@@ -1,6 +1,6 @@
 from django.contrib import admin
-from acct.models import (acct_attribute, student, staff, enrollment, className,
-                             subjectName, transcript, fees)
+from acct.models import (acct_attribute, Student, Staff, Enrollment, ClassName,
+                             Subject, Transcript, Fees, Parent, Teaches)
 
 class ClassificationModelAdmin(admin.ModelAdmin):
 	list_display = ['classification', 'gender', 'timestamp']
@@ -8,40 +8,44 @@ class ClassificationModelAdmin(admin.ModelAdmin):
 		model = acct_attribute
 admin.site.register(acct_attribute, ClassificationModelAdmin)
 
-admin.site.register(student)
+admin.site.register(Parent)
+
+admin.site.register(Teaches)
+
+admin.site.register(Student)
 
 class StaffModelAdmin(admin.ModelAdmin):
 	list_display = ['position', 'timestamp']
 	class Meta:
-		model = staff
-admin.site.register(staff, StaffModelAdmin)
+		model = Staff
+admin.site.register(Staff, StaffModelAdmin)
 
-class SubjectNameModelAdmin(admin.ModelAdmin):
+class SubjectModelAdmin(admin.ModelAdmin):
 	list_display = ['name', 'timestamp']
 	class Meta:
-		model = subjectName
-admin.site.register(subjectName, SubjectNameModelAdmin)
+		model = Subject
+admin.site.register(Subject, SubjectModelAdmin)
 
 class ClassNameModelAdmin(admin.ModelAdmin):
 	list_display = ['name', 'timestamp']
 	class Meta:
-		model = className
-admin.site.register(className, ClassNameModelAdmin)
+		model = ClassName
+admin.site.register(ClassName, ClassNameModelAdmin)
 
 class EnrollmentModelAdmin(admin.ModelAdmin):
-	list_display = ['rootid', 'timestamp']
+	list_display = ['student', 'timestamp']
 	class Meta:
-		model = enrollment
-admin.site.register(enrollment, EnrollmentModelAdmin)
+		model = Enrollment
+admin.site.register(Enrollment, EnrollmentModelAdmin)
 
 class FeeModelAdmin(admin.ModelAdmin):
 	list_display = ['student_id', 'status', 'timestamp']
 	class Meta:
-		model = fees
-admin.site.register(fees, FeeModelAdmin)
+		model = Fees
+admin.site.register(Fees, FeeModelAdmin)
 
 class TranscriptModelAdmin(admin.ModelAdmin):
 	list_display = ['mark', 'grade', 'timestamp']
 	class Meta:
-		model = transcript
-admin.site.register(transcript, TranscriptModelAdmin)
+		model = Transcript
+admin.site.register(Transcript, TranscriptModelAdmin)

@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from acct import views
 
 urlpatterns = [
+    path('', views.welcome),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    path('users/', views.acc_attributes),
+    
+    path("__reload__/", include("django_browser_reload.urls")),
 ]

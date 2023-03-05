@@ -22,34 +22,62 @@ class acct_attribute(models.Model):
     rootid = models.ForeignKey(User, on_delete=models.CASCADE)
     classification = models.CharField(max_length=20, choices=classification)
     gender = models.CharField(max_length=20, choices=gender)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=15)
     address = models.CharField(max_length=50, default='')
     user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'acct_attribute {}'.format(self.id)
+    #def __unicode__(self):
+        #return 'acct_attribute {}'.format(self.id)
+    
+    def __str__(self):
+        return '{} ({})'.format(self.rootid.username, self.classification)
 
 
-class student(models.Model):
+class Student(models.Model):
     status = (
         ('Active', 'Active'),
         ('None Active', 'None Active'),
         ('Suspended', 'Suspended')
     )
+    id = models.AutoField(primary_key=True, editable=False)
     rootid = models.ForeignKey(acct_attribute, on_delete=models.CASCADE)
     dob = models.DateField()
-    parent_id = models.IntegerField()
     status = models.CharField(max_length=20, choices=status, default='Active')
     user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'student {}'.format(self.id)
+    #def __unicode__(self):
+       # return 'student {}'.format(self.id)
+    def __str__(self):
+        return f'{self.rootid} ({self.id})'
+    
+    
+class Parent(models.Model):
+    id = models.AutoField(primary_key=True)
+    rootid = models.ForeignKey(acct_attribute, on_delete=models.CASCADE)
+    students = models.ManyToManyField('Student')
+    user = models.IntegerField(default=1)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
-class staff(models.Model):
+    def __str__(self):
+        return str(self.rootid)
+    
+
+class Subject(models.Model):
+    subject_code = models.CharField(max_length=10, primary_key=True)
+    name = models.CharField(max_length=100)
+    timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add = False, auto_now=True)
+    
+    def __str__(self):
+        return f'{self.subject_code} ({self.name})'
+        
+
+class Staff(models.Model):
     position = (
         ('Headmaster', 'Headmaster'),
         ('Teacher', 'Teacher'),
@@ -57,89 +85,77 @@ class staff(models.Model):
     )
     rootid = models.ForeignKey(acct_attribute, on_delete=models.CASCADE)
     position = models.CharField(max_length=20, choices=position)
+    teach = models.ManyToManyField(Subject, through='Teaches')
     user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'staff {}'.format(self.id)
+    def __str__(self):
+        return f'{self.rootid} ({self.position})'
+    
+class Teaches(models.Model):
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.staff}'
+    
 
-class subjectName(models.Model):
-    subject = (
-        ('English', 'English'),
-        ('Mathmatics', 'Mathmatics'),
-        ('History', 'History'),
-        ('Shona', 'Shona'),
-    )
-    rootid = models.ForeignKey(acct_attribute, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30,choices=subject, default='')
-    user = models.IntegerField(default=1)
+class ClassName(models.Model):
+    id = models.CharField(max_length=10, primary_key=True)
+    name = models.CharField(max_length=30)
+    subject = models.ManyToManyField('Subject')
+    class_teacher = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    #user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'subjectName {}'.format(self.id)
-
-class className(models.Model):
-    className = (
-        ('Form 1 - Blue', 'Form 1 - Blue'),
-        ('Form 1 - Red', 'Form 1 - Red'),
-        ('Form 1 - Green', 'Form 1 - Green'),
-        ('Form 2 - Blue', 'Form 2 - Blue'),
-        ('Form 2 - Red', 'Form 2 - Red'),
-        ('Form 2 - Green', 'Form 2 - Green'),
-    )
-    name = models.CharField(max_length=30,choices=className, default='')
-    teacher_id = models.IntegerField()
-    user = models.IntegerField(default=1)
-    timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
-    updated = models.DateTimeField(auto_now_add = False, auto_now=True)
-
-    def __unicode__(self):
-        return 'className {}'.format(self.id)
+    def __str__(self):
+        return f'{self.name}'
 
 
-class enrollment(models.Model):
-    rootid = models.ForeignKey(student, on_delete=models.CASCADE)
-    staff_id = models.IntegerField()
-    class_id = models.ForeignKey(className, on_delete=models.CASCADE)
+class Enrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments')
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    class_id = models.ForeignKey(ClassName, on_delete=models.CASCADE)
     date_from = models.DateField()
-    user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'enrollment {}'.format(self.id)
+    def __str__(self):
+            return f'{self.student}'
 
-class fees(models.Model):
+class Fees(models.Model):
     status = (
         ('Fully Paid', 'Fully Paid'),
         ('Partially Paid', 'Partially Paid'),
         ('Not Paid', 'Not Paid')
     )
-    student_id = models.ForeignKey(student, on_delete=models.CASCADE)
-    enrollment_id = models.ForeignKey(enrollment, on_delete=models.CASCADE)
-    class_id = models.ForeignKey(className, on_delete=models.CASCADE)
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    enrollment_id = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    class_id = models.ForeignKey(ClassName, on_delete=models.CASCADE)
     amount = models.IntegerField()
     status = models.CharField(max_length=20, choices=status, default='Active')
     paid_date = models.DateField()
-    user = models.IntegerField(default=1)
+    #user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'fees {}'.format(self.id)
+    def __str__(self):
+            return f'{self.student_id} ({self.paid_date})'
 
-class transcript(models.Model):
-    student_id = models.ForeignKey(student, on_delete=models.CASCADE)
-    class_id = models.ForeignKey(className, on_delete=models.CASCADE)
-    subject_id = models.ForeignKey(subjectName, on_delete=models.CASCADE)
+class Transcript(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    class_id = models.ForeignKey(ClassName, on_delete=models.CASCADE)
+    subject_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
     mark = models.CharField(max_length=10)
     grade = models.CharField(max_length=20)
     teacher_comments = models.CharField(max_length=100)
-    user = models.IntegerField(default=1)
+    #user = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now=False)
     updated = models.DateTimeField(auto_now_add = False, auto_now=True)
 
-    def __unicode__(self):
-        return 'transcript {}'.format(self.id)
+    #def __unicode__(self):
+       # return 'transcript {}'.format(self.id)
+    def __str__(self):
+        return self.student
