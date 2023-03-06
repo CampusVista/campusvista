@@ -149,6 +149,8 @@ STATICFILES_DIRS = (
 
 )
 
+STATICFILES_DIRS
+
 # tailwind definition
 TAILWIND_APP_NAME = 'tailwind_theme'
 
@@ -157,4 +159,4 @@ INTERNAL_IPS = [
 ]
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-NPM_BIN_PATH = "/usr/local/bin/npm"
+

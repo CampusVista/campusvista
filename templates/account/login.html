@@ -9,14 +9,14 @@
 
 
 {% get_providers as socialaccount_providers %}
-<div class="d-flex flex-column w-100 justify-content-center align-items-center">
+<div class=" ml-60 px-64 mb-10 h-64 mr-60 mt-20 bg-yellow-500 rounded-2xl shadow">
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="card card-default rounded-0 shadow">
-            <div class="card-header">
-                <h4 class="card-title"><b>Login</b></h4>
+            <div class="card-header mt-20">
+                <h4 class="card-title py-5 text-center" ><b>Login</b></h4>
             </div>
             <div class="card-body">
-                <div class="container-fluid">
+                <div class="container text-center">
                     <form class="login" method="POST" action="{% url 'account_login' %}">
                         {% csrf_token %}
                         <div class="form-group mb-3">
