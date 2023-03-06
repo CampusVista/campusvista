@@ -766,44 +766,24 @@ select {
   margin-bottom: 0.75rem;
 }
 
-.ml-36 {
-  margin-left: 9rem;
+.ml-60 {
+  margin-left: 15rem;
 }
 
 .mr-2 {
   margin-right: 0.5rem;
 }
 
-.mr-20 {
-  margin-right: 5rem;
+.mr-60 {
+  margin-right: 15rem;
 }
 
 .mt-20 {
   margin-top: 5rem;
 }
 
-.mr-64 {
-  margin-right: 16rem;
-}
-
-.mr-60 {
-  margin-right: 15rem;
-}
-
-.ml-28 {
-  margin-left: 7rem;
-}
-
-.ml-60 {
-  margin-left: 15rem;
-}
-
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
 }
 
 .block {
@@ -848,10 +828,6 @@ select {
 
 .w-6 {
   width: 1.5rem;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .max-w-5xl {
@@ -923,24 +899,9 @@ select {
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
-.bg-orange-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
-}
-
 .bg-yellow-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
-}
-
-.bg-orange-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(234 88 12 / var(--tw-bg-opacity));
-}
-
-.bg-yellow-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(133 77 14 / var(--tw-bg-opacity));
 }
 
 .bg-yellow-500 {
@@ -953,9 +914,9 @@ select {
   padding-right: 0.75rem;
 }
 
-.px-96 {
-  padding-left: 24rem;
-  padding-right: 24rem;
+.px-64 {
+  padding-left: 16rem;
+  padding-right: 16rem;
 }
 
 .py-2 {
@@ -966,16 +927,6 @@ select {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-}
-
-.px-64 {
-  padding-left: 16rem;
-  padding-right: 16rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .text-center {
