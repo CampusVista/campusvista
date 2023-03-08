@@ -19,6 +19,7 @@ from acct import views
 
 urlpatterns = [
     path('', views.welcome),
+    path('dashboard/', views.dashboard),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     path('users/', views.acc_attributes),

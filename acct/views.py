@@ -12,6 +12,10 @@ def welcome(request):
     return render(request, 'welcome.html')
 
 @login_required
+def dashboard(request):
+    return render(request, 'dashboard.html', name='dashboard')
+
+@login_required
 def acc_attributes(request):
     
     users = acct_attribute.objects.all()

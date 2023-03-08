@@ -1,0 +1,29 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+<div class="flex space-x-4  ml-60 text-yellow-900 font-bold items-center">
+    <h1 class="space-x-8">{% trans "Sign Up" %} </h1>
+
+
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+</div>
+
+<div class='ml-60 px-64 mb-10 h-96 mr-60 mt-5 bg-yellow-500 rounded-2xl shadow'>
+    <div class="container shadow px-3 py-5 w-full  text-yellow-900">
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="text-yellow-900 ease-in mt-5 bg-yellow-400 hover:bg-yellow-200 rounded shadow transition duration-300 py-2 px-2" type="submit" >{% trans "Sign Up" %} &raquo;</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
