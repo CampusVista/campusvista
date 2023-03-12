@@ -1103,6 +1103,17 @@ select {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-teal-600 {
+  --tw-gradient-from: #0d9488;
+  --tw-gradient-to: rgb(13 148 136 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-slate-500 {
+  --tw-gradient-to: rgb(100 116 139 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #64748b, var(--tw-gradient-to);
+}
+
 .to-white {
   --tw-gradient-to: #fff;
 }
