@@ -6,14 +6,19 @@
 
 {% block content %}
 
-<div class="flex space-x-4  ml-60 text-yellow-900 font-bold items-center">
-    <h1 class="space-x-8">{% trans "Sign Up" %} </h1>
+<div class="flex space-x-4 ml-60 mt-5 text-yellow-900 font-bold">
+    <h1>{% trans "Sign Up" %} 
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          
+    </h1>
 
 
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="text-yellow-900 ease-in mt-5 bg-yellow-400 hover:bg-yellow-200 rounded shadow transition duration-300 py-2 px-2">sign in</a>.{% endblocktrans %}</p>
 </div>
 
-<div class='ml-60 px-64 mb-10 h-96 mr-60 mt-5 bg-yellow-500 rounded-2xl shadow'>
+<div class='ml-60 px-64 mb-10 h-96 mr-60 mt-5 bg-yellow-500 rounded-2xl shadow-2xl'>
     <div class="container shadow px-3 py-5 w-full  text-yellow-900">
         <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}

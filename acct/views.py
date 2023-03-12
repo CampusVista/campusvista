@@ -13,7 +13,7 @@ def welcome(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html', name='dashboard')
+    return render(request, 'account/dashboard.html')
 
 @login_required
 def acc_attributes(request):
