@@ -4,9 +4,9 @@
 
 {% block content %}
 
-<div class="relative min-h-screen flex">
-    <div class="rounded bg-gradient-to-bl from-teal-600 via-slate-500 to-gray-400 text-white w-64 space-y-6 mr-16">
-        <a href="#" class="flex space-x-2">
+<div class="flex">
+    <div class="bg-gradient-to-bl from-teal-600 via-slate-500 to-gray-400 text-white mr-3 min-h-screen">
+        <a href="#" class="flex ">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
             </svg>
@@ -33,15 +33,19 @@
          </nav>  
     </div>
 
-    <div class="grid grid-cols-2 gap-4">
-        <div class=" rounded flex h-full aspect-w-1 aspect-h-1 bg-red-700"> 12345dhgfdh4sdsdsdfsdfdgdgfd2424</div>
-        <div class="rounded flex h-full aspect-w-1 aspect-h-1 bg-yellow-200">12345dhgfdh4sdsdsdfsdfdgdgfd2424</div>
-        <div class="rounded flex h-full aspect-w-1 aspect-h-1 bg-blue-600">12345dhgfdh4sdsdsdfsdfdgdgfd2424</div>
-        <div class="rounded flex h-full aspect-w-1 aspect-h-1 bg-red-700">12345dhgfdh4sdsdsdfsdfdgdgfd2424</div>
-        <div class="rounded flex h-full aspect-w-1 aspect-h-1 bg-yellow-200">12345dhgfdh4sdsdsdfsdfdgdgfd2424</div>
-        <div class="rounded flex h-full aspect-w-1 aspect-h-1 bg-blue-600">12345dhgfdh4sdsdsdfsdfdgdgfd2424</div>
-        <!-- more grid items -->
+    <div class="w-2/3">
+        <div class="flex">
+            <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 h-80 shadow-md"></div>
+            <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 shadow-md"></div>
+        </div>
+        <div class="flex">
+            <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 h-80 shadow-md"></div>
+            <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 shadow-md"></div>
+        </div>
       </div>
+
+      <div class="w-80 m-3 p-2 rounded-2xl border-solid border-2 border-slate-100"></div>
+
 
 </div>
 {% endblock %}
