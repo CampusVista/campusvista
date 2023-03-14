@@ -15,28 +15,23 @@
         </a> 
          <nav> 
             <a class="block py-2.5 px-20"> 
-            <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white">Student </button>
-            </a>
-            <a class="block py-2.5 px-20"> 
-                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white"> Teachers </button>
-            </a>
-            <a class="block py-2.5 px-20"> 
-                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white">Subjects </button>
-            </a>
-            <a class="block py-2.5 px-20"> 
-                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white"> Classes </button>
-            </a>
-            <a class="block py-2.5 px-20">
-            <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white">Notice </button>
-
-            </a>
+                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white rounded-2xl">Student </button></a>
+                <a class="block py-2.5 px-20"> 
+                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white rounded-2xl"> Teachers </button> </a>
+                <a class="block py-2.5 px-20"> 
+                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white rounded-2xl">Subjects </button></a>
+                <a class="block py-2.5 px-20"> 
+                <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white rounded-2xl"> Classes </button></a>
+                <a class="block py-2.5 px-20">
+                    <button class="px-3 border-white border-2 w-24 h-10 hover:bg-black text-white rounded-2xl">Notice </button> </a>
          </nav>  
     </div>
 
     <div class="w-2/3">
+        
         <div class="flex">
-            <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 h-80 shadow-md"></div>
-            <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 shadow-md"></div>
+            <div id="chart_student" class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 h-80 shadow-md items-center"></div>
+            <div id="chart_staff" class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 shadow-md"></div>
         </div>
         <div class="flex">
             <div class="flex-1 m-3 p-2 border-solid border-2 border-slate-100 h-80 shadow-md"></div>
@@ -47,7 +42,34 @@
       <div class="w-80 m-3 p-2 rounded-2xl border-solid border-2 border-slate-100"></div>
 
 
+
+
 </div>
+  <script>
+    var options = {
+      chart: {
+        type: 'pie',
+      },
+      series: [{{ male_count }}, {{ female_count }}],
+      labels: ['Male', 'Female'],
+    }
+
+    var chart = new ApexCharts(document.querySelector('#chart_student'), options);
+    chart.render();
+  </script>
+
+  <script>
+    var options = {
+      chart: {
+        type: 'donut',
+      },
+      series: [{{ teachers }}, {{staff}}],
+      labels: ['teachers', 'staff'],
+    }
+
+    var chart = new ApexCharts(document.querySelector('#chart_staff'), options);
+    chart.render();
+  </script>
 {% endblock %}
 
 
