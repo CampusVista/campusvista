@@ -10,31 +10,27 @@ from django.http import JsonResponse
 
 
 @login_required
-def welcome(request):
-    return render(request, 'welcome.html')
-
-@login_required
 def dashboard(request):
-    #displays male and female students in template chart
+    # displays male and female students in template chart
     students = Student.objects.all()
     male_count = students.filter(rootid__gender='Male').count()
     female_count = students.filter(rootid__gender='Female').count()
     staff = Staff.objects.all()
     teachers_count = staff.filter(position="Teacher").count()
-    staff_count = staff.filter(rootid__classification="Staff", position='Administrator').count()
-    
+    staff_count = staff.filter(
+        rootid__classification="Staff", position='Administrator').count()
+
     context = {
         'male_count': male_count,
         'female_count': female_count,
         'teachers': teachers_count,
-        'staff':staff_count,
+        'staff': staff_count,
     }
     return render(request, 'account/dashboard.html', context)
 
+
 @login_required
 def acc_attributes(request):
-    
     users = acct_attribute.objects.all()
-    context = {'users': users, 'authe':User}
+    context = {'users': users, 'authe': User}
     return render(request, 'acc_attributes.html', context)
-

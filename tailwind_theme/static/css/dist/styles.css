@@ -846,6 +846,10 @@ select {
   margin-right: 0.75rem;
 }
 
+.mt-0 {
+  margin-top: 0px;
+}
+
 .block {
   display: block;
 }
@@ -953,6 +957,26 @@ select {
 
 .w-2\/3 {
   width: 66.666667%;
+}
+
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-2\/4 {
+  width: 50%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-4\/6 {
+  width: 66.666667%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .min-w-fit {
@@ -1177,6 +1201,10 @@ select {
   padding: 1rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1210,6 +1238,11 @@ select {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .text-center {
